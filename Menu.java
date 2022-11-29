@@ -58,11 +58,12 @@ public class Menu {
                         System.out.println("Erro, Grafo não criado, pois o Parâmetro R é igual a 0. Por favor, retorne a Opção 01.");
                     }
                     else{
-                        //Entrada das Cidades ou Rank
-
-                        //aplicar Algoritmo de Caminho Minimo
-
-                        //imprimir resultado do Caminho Minimo
+                        
+                        System.out.println("Digite a Cidade de Origem: ");
+                        int rankOne = this.getRankCity() - 1;
+                        System.out.println("Digite a Cidade de Chegada: ");
+                        int rankTwo = this.getRankCity() - 1;
+                        graph.caminhoMinimo(rankOne, rankTwo);
 
                     }
                     break;
@@ -115,5 +116,37 @@ public class Menu {
         return list;
     }
 
+    private int getRankCity(){
+        int rank = -1;
+        boolean control = true;
+        while(control){
+            String CityOne = this.getName();
+            for(City c:this.listCities){
+                if(c.getName().equals(CityOne)){
+                    control = false;
+                    rank = c.getRank();
+                }
+            }
+            if(control){
+                System.out.println("Cidade não encontrada, por favor Digite Novamente!");
+            }
+            else{
+                System.out.println("Cidade encontrada com Sucesso!");
+            }
+        }
+        return rank;
+    }
+
+    private String getName(){
+        String city = "";
+        boolean control = true;
+        while(control){
+            city = sc.nextLine();
+            if(city !=""){
+                control = false;
+            }
+        }
+        return city;
+    }
 
 }
